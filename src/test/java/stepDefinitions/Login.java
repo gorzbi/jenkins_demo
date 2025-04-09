@@ -1,6 +1,5 @@
 package stepDefinitions;
 
-import dane.DaneLogin;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -25,13 +24,13 @@ public class Login {
         lp.enterLoginPage(driver);
     }
 
-    // pobiera dane testowe z innego pliku, pobieranie zdefiniowane w metodzie z klasy page
-    @When("Enter wrong credentials")
-    public void enter_wrong_credentials(DaneLogin dane) {
+    // dane testowe zdefiniowane w feature, pobierają z metody z klasy page
+    @When("Enter wrong credentials {},{}")
+    public void enter_wrong_credentials(String user, String pass) {
 
         System.out.println("Entering wrong credentials");
         LoginPage lp = new LoginPage(driver);
-        lp.loginWrongUser(dane);
+        lp.loginWithCredentials(user,pass);
     }
     @Then("Check wrong credentials message")
     public void check_wrong_credentials_message() {
@@ -47,7 +46,7 @@ public class Login {
 
         System.out.println("Entering blocked user credentials");
         LoginPage lp = new LoginPage(driver);
-        lp.loginBlockedUser("locked_out_user", "secret_sauce");
+        lp.loginWithCredentials("locked_out_user", "secret_sauce");
     }
     @Then("Check blocked user message")
     public void check_blocked_user_message() {
@@ -57,22 +56,22 @@ public class Login {
         lp.checkBlockedErrorMessage();
     }
 
-    // dane testowe zdefiniowane w feature
-    @When("Enter good manual credentials {},{}")
-    public void enter_good_manual_credentials(String test1, String test2) {
+    // dane zdefiniowane tutaj na sztywno, przypisanie jako parametr metody z klasy page
+    @When("Enter good manual credentials")
+    public void enter_good_manual_credentials() {
 
         System.out.println("Entering manual good credentials");
         LoginPage lp = new LoginPage(driver);
-        lp.loginManual(test1,test2);
+        lp.loginWithCredentials("standard_user","secret_sauce");
     }
 
-    // pobiera dane testowe z innego pliku, pobieranie zdefiniowane w metodzie z klasy page
-    @When("Enter good credentials")
-    public void enter_good_credentials(DaneLogin dane) {
+    // dane testowe zdefiniowane w feature, pobierają z metody z klasy page
+    @When("Enter good credentials {},{}")
+    public void enter_good_credentials(String user, String pass) {
 
         System.out.println("Entering good credentials");
         LoginPage lp = new LoginPage(driver);
-        lp.loginGoodUser(dane);
+        lp.loginWithCredentials(user, pass);
     }
 
     @Then("Check after good login")
