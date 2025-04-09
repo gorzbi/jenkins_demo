@@ -37,7 +37,28 @@ public class LoginPage {
         this.daneLogin = new DaneLogin();
     }
 
-    public void loginAuto(DaneLogin dane){
+    public void enterLoginPage(WebDriver driver) {
+
+        driver.get("https://www.saucedemo.com/");
+    }
+
+    public void loginWrongUser(DaneLogin dane){
+        usernameInput.clear();
+        usernameInput.sendKeys(dane.getWrongUsername());
+        passwordInput.clear();
+        passwordInput.sendKeys(dane.getWrongPassword());
+        loginButton.click();
+    }
+
+    public void loginBlockedUser(String userBlocked, String passBlocked){
+        usernameInput.clear();
+        usernameInput.sendKeys(userBlocked);
+        passwordInput.clear();
+        passwordInput.sendKeys(passBlocked);
+        loginButton.click();
+    }
+
+    public void loginGoodUser(DaneLogin dane){
         usernameInput.clear();
         usernameInput.sendKeys(dane.getUsername());
         passwordInput.clear();
