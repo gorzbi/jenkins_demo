@@ -26,6 +26,9 @@ public class LoginPage {
     @FindBy(xpath = "//h3[contains(text(),'Sorry, this user has been locked out')]")
     private WebElement blockedLoginErrorMessage;
 
+    @FindBy(id = "elo")
+    private WebElement nonExsistingElement;
+
 
     WebDriver driver;
 
@@ -57,5 +60,9 @@ public class LoginPage {
 
     public void checkBlockedErrorMessage() {
         Assert.assertTrue(blockedLoginErrorMessage.isDisplayed());
+    }
+
+    public void clickNonElement() {
+        nonExsistingElement.click();
     }
 }
