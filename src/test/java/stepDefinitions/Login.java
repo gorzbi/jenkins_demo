@@ -81,4 +81,18 @@ public class Login {
         MainPage mp = new MainPage(driver);
         mp.checkAfterCorrectLogin();
     }
+
+    @When("Click no element")
+    public void click_non() {
+
+        System.out.println("Clicking no element");
+        LoginPage lp = new LoginPage(driver);
+        lp.clickNonElement();
+    }
+
+    @Then("Show message")
+    public void message() {
+
+        System.out.println("It's a bug !!!");
+    }
 }

@@ -34,3 +34,9 @@ Feature: Login
     Examples:
       | user | pass |  |
       | elo  | elo  |  |
+
+  @bug
+  Scenario: There is no such element
+
+    When Click no element
+    Then Show message
