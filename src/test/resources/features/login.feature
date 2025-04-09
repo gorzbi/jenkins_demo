@@ -4,10 +4,15 @@ Feature: Login
     Given Login page
 
   @first
-  Scenario: Login with wrong credentials
+  Scenario Outline: Login with wrong credentials
 
-    When Enter wrong credentials
+    When Enter wrong credentials <user>,<pass>
     Then Check wrong credentials message
+    Examples:
+      | user  | pass  |  |
+      | jeden | jeden |  |
+      | dwa   | dwa     |  |
+
 
   @second
   Scenario: Login with blocked user
@@ -16,16 +21,16 @@ Feature: Login
     Then Check blocked user message
 
   @third
-  Scenario Outline: Login with manual credentials
+  Scenario: Login with manual credentials
 
-    When Enter good manual credentials <username>,<password>
+    When Enter good manual credentials
     Then Check after good login
-    Examples:
-      | username      | password     |  |
-      | standard_user | secret_sauce |  |
 
   @fourth
-  Scenario: Login auto with good credentials
+  Scenario Outline: Login auto with good credentials
 
-    When Enter good credentials
+    When Enter good credentials <user>,<pass>
     Then Check after good login
+    Examples:
+      | user | pass |  |
+      | elo  | elo  |  |
