@@ -1,5 +1,7 @@
-w intellij dla każdego Runner tam gdzie "pretty" i ścieżka do html dodać ścieżkę dla raportu json -> 
-json:target/cucumber.json
+ładny raport cucumber w jenkins:
+-> w intellij dla każdego Runner tam gdzie "pretty" i ścieżka do html dodać ścieżkę dla raportu json -> json:target/cucumber.json
+-> ta ścieżka potrzebna jest dla Jenkins
+-> w intellij cucumber generuje raport do target/ bez css i js dlatego trzeba odpowiednio sformatować w Jenkins
 
 // konfiguracja raportu cucumber dla jenkins:
 https://www.jenkins.io/doc/pipeline/steps/cucumber-reports/
