@@ -6,17 +6,12 @@ import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 
 
 public class Konfig {
 
-    private static final Logger log = LoggerFactory.getLogger(Konfig.class);
     protected static WebDriver driver;
-
-    String reportPath="src/main/resources/raporty/";
 
     // osobne wywołanie driver dla cucumber
     public static WebDriver getDriver() {
