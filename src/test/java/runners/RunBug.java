@@ -7,7 +7,7 @@ import io.cucumber.testng.CucumberOptions;
         monochrome = true, // sformatowane info w konsoli
         plugin = {"pretty",
                 "html:src/main/resources/raporty/bug.html", // ścieżka do raportu
-                "html:target/cucumber-html-reports"}, // ścieżki do raportu dla Jenkins
+                "json:target/cucumber.json"}, // ścieżka do raportu dla Jenkins
         tags="@bug" // odpali wszystkie co mają ten tag, można stosować z poziomu features lub danego scenario
 )
 
