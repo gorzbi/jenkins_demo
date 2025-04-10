@@ -1,3 +1,6 @@
+// konfiguracja raportu cucumber dla jenkins:
+https://www.jenkins.io/doc/pipeline/steps/cucumber-reports/
+
 pipeline {
     agent any
     
@@ -7,19 +10,6 @@ pipeline {
         }
 
     stages {
-        stage('Weryfikacja folderu dla raportów') {
-            steps {
-                script {
-                    // Sprawdź, czy katalog istnieje
-                    if (fileExists('target/cucumber-html-reports')) {
-                    echo 'Folder dla raportu istnieje!'
-                    } else {
-                    echo 'Folder dla raportu nie istnieje. Tworzę go!'
-                    bat 'mkdir -p target/cucumber-html-reports'
-                    }
-                }
-            }
-        }
         stage('Start full automation') {
             steps {
                 echo "Rozpoczynam automation pipeline"
@@ -42,19 +32,20 @@ pipeline {
                  echo "Testy zakończone"
             }
         }
-        stage('Get report') {
+        stage('Get Cucumber report') {
             steps {
-                 echo "Tworzę raport"
-                    publishHTML([
-                        allowMissing: '', 
-                        alwaysLinkToLastBuild: '', 
-                        keepAll: '', 
-                        reportDir: 'target/cucumber-html-reports', // taką ścieżkę bo Cucumber nie ma stylów i tak też w runner się podaje
-                        reportFiles: 'index.html', // index bo testng generuje w target taką nazwę
-                        reportName: 'Cucumber HTML Report',
-                        useWrapperFileDirectly: false
-                        ])
-            
+                 echo "Tworzę raport Cucumber"
+                 cucumber buildStatus: 'UNCHANGED', 
+                 customCssFiles: '', 
+                 customJsFiles: '', 
+                 failedFeaturesNumber: -1, 
+                 failedScenariosNumber: -1, 
+                 failedStepsNumber: -1, 
+                 fileIncludePattern: '**/*.json', 
+                 pendingStepsNumber: -1, 
+                 skippedStepsNumber: -1, 
+                 sortingMethod: 'ALPHABETICAL', 
+                 undefinedStepsNumber: -1
             }
         }
     }
