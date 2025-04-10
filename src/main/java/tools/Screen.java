@@ -29,7 +29,8 @@ public class Screen {
 
     public static String takeScreenshot(WebDriver driver) throws IOException {
 
-        String scrName = "fail"+ new Random().nextInt(999)+".png";
+        //String scrName = "fail"+ new Random().nextInt(999)+".png";
+        String scrName = "Screenshot";
 
         // Cast driver to TakesScreenshot
         TakesScreenshot screenshot = (TakesScreenshot) driver;

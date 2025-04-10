@@ -6,11 +6,17 @@ import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
+
 
 public class Konfig {
 
+    private static final Logger log = LoggerFactory.getLogger(Konfig.class);
     protected static WebDriver driver;
+
+    String reportPath="src/main/resources/raporty/";
 
     // osobne wywołanie driver dla cucumber
     public static WebDriver getDriver() {
@@ -56,7 +62,7 @@ public class Konfig {
      */
     @BeforeMethod
     @Before
-    public void takeBrowser() {
+    public static void takeBrowser() {
 
         driver = DriverFactory.getDriver(DriverType.FIREFOX);
         driver.manage().window().maximize();
@@ -75,6 +81,7 @@ public class Konfig {
      * zrobienie screena błędu
      * zamknięcie przeglądarki
      */
+
     @AfterMethod
     @After
     public void tearDown(Scenario scenario) {
@@ -105,7 +112,6 @@ public class Konfig {
     // wykonywane raz jako przedostatnia rzecz
     @AfterTest
     public void test() {
-
         System.out.println("After test");
     }
 
@@ -119,6 +125,6 @@ public class Konfig {
     public void generateExtentReport() {
 
         System.out.println("After suite");
-    }
 
+    }
 }
