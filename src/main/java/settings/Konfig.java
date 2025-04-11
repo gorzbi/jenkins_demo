@@ -119,7 +119,7 @@ public class Konfig {
     @AfterSuite
     public void generateExtentReport() {
 
-        System.out.println("After suite");
+        System.out.println("To na koniec");
 
     }
 }
