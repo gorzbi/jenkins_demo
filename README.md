@@ -11,7 +11,9 @@ pipeline {
     agent any
     
     parameters {
+    // nazwy branch takie jak w github
         choice choices: ['main', 'dev'], name: 'Branch'
+        // nazwy runnerów jak w framework'u
         choice choices: ['RunAll', 'RunBug', 'RunFirst', 'RunFirstTwo'], name: 'Runner'
         }
 
