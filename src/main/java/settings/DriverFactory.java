@@ -21,4 +21,24 @@ public class DriverFactory {
             return new EdgeDriver();
         }
     }
+
+    public static WebDriver alternativeGetDriver(DriverType type) {
+
+        switch (type) {
+            case FIREFOX:
+                WebDriverManager.firefoxdriver().setup();
+                return new FirefoxDriver();
+
+            case CHROME:
+                WebDriverManager.chromedriver().setup();
+                return new ChromeDriver();
+
+            case EDGE:
+                WebDriverManager.edgedriver().setup();
+                return new EdgeDriver();
+
+            default:
+                throw new IllegalArgumentException("Nie ma takiej przeglądarki: " + type);
+        }
+    }
 }
